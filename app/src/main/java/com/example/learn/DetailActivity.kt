@@ -102,7 +102,7 @@ private fun SootheBottomNavigation(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(modifier: Modifier = Modifier) {
     Column(
         modifier.verticalScroll(rememberScrollState())
     ) {

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
@@ -100,22 +101,45 @@ private fun Home() {
             }
         }
     ) { innerPadding ->
-        NavHost(
-            navController,
-            startDestination = Screen.Profile.route,
-            Modifier.padding(innerPadding)
-        ) {
-            composable(Screen.Profile.route) {
-                Profile(
-                    onNavigateToFriends = { navController.navigate("friendsList") },
-                )
-            }
+        //NavHost1(navController,innerPadding)
+        NavHost2(navController, innerPadding)
+    }
+}
 
-            composable(Screen.FriendsList.route) {
-                FriendsList(
-                    onNavigateToProfile = { navController.navigate("profile") },
-                )
-            }
+@Composable
+fun NavHost1(navController: NavHostController, innerPadding: PaddingValues) {
+    NavHost(
+        navController,
+        startDestination = Screen.Profile.route,
+        Modifier.padding(innerPadding)
+    ) {
+        composable(Screen.Profile.route) {
+            Profile(
+                onNavigateToFriends = { navController.navigate(Screen.FriendsList.route) },
+            )
+        }
+
+        composable(Screen.FriendsList.route) {
+            FriendsList(
+                onNavigateToProfile = { navController.navigate(Screen.Profile.route) },
+            )
+        }
+    }
+}
+
+@Composable
+fun NavHost2(navController: NavHostController, innerPadding: PaddingValues) {
+    NavHost(
+        navController,
+        startDestination = Screen.Profile.route,
+        Modifier.padding(innerPadding)
+    ) {
+        composable(Screen.Profile.route) {
+            HomeScreen()
+        }
+
+        composable(Screen.FriendsList.route) {
+            Conversation(SampleData.conversationSample)
         }
     }
 }
@@ -125,8 +149,11 @@ sealed class Screen(
     @StringRes val resourceId: Int,
     val imageVector: ImageVector
 ) {
-    object Profile : Screen("profile", R.string.profile, Icons.Default.Spa)
-    object FriendsList : Screen("friendsList", R.string.friends_list, Icons.Default.AccountCircle)
+    object Profile :
+        Screen("home", R.string.bottom_navigation_home, Icons.Default.Spa)
+
+    object FriendsList :
+        Screen("profile", R.string.bottom_navigation_profile, Icons.Default.AccountCircle)
 }
 
 @Composable
