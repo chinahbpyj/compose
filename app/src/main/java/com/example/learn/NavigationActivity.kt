@@ -1,6 +1,5 @@
 package com.example.learn
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,7 +14,6 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Spa
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -67,14 +65,17 @@ private fun Home() {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentDestination = navBackStackEntry?.destination
                 items.forEach { screen ->
-                    val isSelected=currentDestination?.hierarchy?.any { it.route == screen.route } == true
+                    val isSelected =
+                        currentDestination?.hierarchy?.any { it.route == screen.route } == true
 
                     BottomNavigationItem(
                         icon = { Icon(screen.imageVector, contentDescription = null) },
 
                         label = {
-                            Text(stringResource(screen.resourceId),
-                            color = if(isSelected) Purple40 else PurpleGrey80)
+                            Text(
+                                stringResource(screen.resourceId),
+                                color = if (isSelected) Purple40 else PurpleGrey80
+                            )
                         },
 
                         selected = isSelected,

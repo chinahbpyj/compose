@@ -23,7 +23,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.example.learn.ui.theme.LearnTheme
 import com.example.learn.ui.theme.Pink80
@@ -88,7 +87,12 @@ private fun Home() {
             }
         ) { padding ->
             Surface(modifier = Modifier.padding(padding)) {
-                Text(text = "",Modifier.background(backgroundColor).fillMaxSize())
+                Text(
+                    text = "",
+                    Modifier
+                        .background(backgroundColor)
+                        .fillMaxSize()
+                )
 
             }
         }

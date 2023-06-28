@@ -101,7 +101,7 @@ fun ConversationItem(message: Message) {
                 shape = MaterialTheme.shapes.medium,
                 shadowElevation = 1.dp,
                 // surfaceColor color will be changing gradually from primary to surface
-                 color = surfaceColor,
+                color = surfaceColor,
                 // animateContentSize will change the Surface size gradually
                 modifier = Modifier
                     .animateContentSize()
