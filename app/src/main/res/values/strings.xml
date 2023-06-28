@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Compose</string>
+
+    <string name="placeholder_search">Search</string>
+    <string name="ab1_inversions">Inversions</string>
+    <string name="fc2_nature_meditations">Inversions</string>
+    <string name="align_your_body">ALIGN YOUR BODY</string>
+    <string name="favorite_collections">FAVORITE COLLECTIONS</string>
+
+    <string name="bottom_navigation_home">HOME</string>
+    <string name="bottom_navigation_profile">PROFILE</string>
+
+    <string name="profile">PROFILE</string>
+    <string name="friends_list">FRIENDS</string>
+</resources>
