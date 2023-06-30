@@ -12,4 +12,18 @@
 
     <string name="profile">PROFILE</string>
     <string name="friends_list">FRIENDS</string>
+
+    <string name="sign_in_create_account">Sign in or create an account</string>
+    <string name="sign_in">Sign in</string>
+    <string name="register">Register</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+
+    <string name="show_password">Show password</string>
+    <string name="hide_password">Hide password</string>
+
+    <string name="feature_not_available">Feature not available</string>
+    <string name="dismiss">Dismiss</string>
+
+    <string name="back">back</string>
 </resources>
