@@ -58,7 +58,7 @@ import com.example.learn.ui.theme.LearnTheme
 import com.example.learn.ui.theme.PurpleGrey80
 import kotlinx.coroutines.launch
 
-class ComposeViewActivity : ComponentActivity() {
+class LoginRegisterActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

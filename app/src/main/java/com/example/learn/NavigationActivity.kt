@@ -46,14 +46,14 @@ class NavigationActivity : ComponentActivity() {
         setContent {
             LearnTheme {
                 //MyAppNavHost()
-                Home()
+                NavigationHome()
             }
         }
     }
 }
 
 @Composable
-private fun Home() {
+fun NavigationHome() {
     val items = listOf(
         Screen.Profile,
         Screen.FriendsList,
