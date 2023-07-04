@@ -19,6 +19,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.learn.ButtonDestinations.LOGIN_ROUTE
+import com.example.learn.ButtonDestinations.MAIN_ROUTE
 import com.example.learn.ButtonDestinations.NAVIGATION_ROUTE
 import com.example.learn.ui.theme.LearnTheme
 
@@ -34,6 +35,7 @@ class MainActivity : ComponentActivity() {
 }
 
 object ButtonDestinations {
+    const val MAIN_ROUTE = "main"
     const val LOGIN_ROUTE = "login"
     const val NAVIGATION_ROUTE = "navigation"
 }
@@ -59,9 +61,9 @@ fun MainNavHost(
 
     NavHost(
         navController = navController,
-        startDestination = "Main",
+        startDestination = MAIN_ROUTE,
     ) {
-        composable("Main") {
+        composable(MAIN_ROUTE) {
             ListButton(buttonListSample)
         }
 
