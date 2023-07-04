@@ -16,13 +16,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.learn.ui.theme.LearnTheme
+import com.example.learn.view.ViewDestinations.BUTTON_ROUTE
 import com.example.learn.view.ViewDestinations.MAIN_ROUTE
 import com.example.learn.view.ViewDestinations.TOP_APPBAR_ROUTE
 
 object ViewDestinations {
     const val MAIN_ROUTE = "Main"
     const val TOP_APPBAR_ROUTE = "TopAppBar"
-    const val NAVIGATION_ROUTE = "navigation"
+    const val BUTTON_ROUTE = "Button"
     const val VIEW_ROUTE = "view"
 }
 
@@ -48,8 +49,10 @@ fun ComposeViewNavHost(
             "TopAppBar",
         ) { navController.navigate(TOP_APPBAR_ROUTE) },
 
-
-        )
+        View(
+            "Button",
+        ) { navController.navigate(BUTTON_ROUTE) },
+    )
     NavHost(
         navController = navController,
         startDestination = MAIN_ROUTE,
@@ -60,6 +63,10 @@ fun ComposeViewNavHost(
 
         composable(TOP_APPBAR_ROUTE) {
             TopBarView("TopAppBar", navController::navigateUp)
+        }
+
+        composable(BUTTON_ROUTE) {
+            ButtonView(navController::navigateUp)
         }
     }
 }
