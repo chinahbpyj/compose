@@ -21,7 +21,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.learn.ButtonDestinations.LOGIN_ROUTE
 import com.example.learn.ButtonDestinations.MAIN_ROUTE
 import com.example.learn.ButtonDestinations.NAVIGATION_ROUTE
+import com.example.learn.ButtonDestinations.VIEW_ROUTE
 import com.example.learn.ui.theme.LearnTheme
+import com.example.learn.view.ComposeViewHome
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +40,7 @@ object ButtonDestinations {
     const val MAIN_ROUTE = "main"
     const val LOGIN_ROUTE = "login"
     const val NAVIGATION_ROUTE = "navigation"
+    const val VIEW_ROUTE = "view"
 }
 
 data class Button(
@@ -56,7 +59,11 @@ fun MainNavHost(
 
         Button(
             "NavigationActivity",
-        ) { navController.navigate(NAVIGATION_ROUTE) }
+        ) { navController.navigate(NAVIGATION_ROUTE) },
+
+        Button(
+            "ComposeViewActivity",
+        ) { navController.navigate(VIEW_ROUTE) }
     )
 
     NavHost(
@@ -68,11 +75,15 @@ fun MainNavHost(
         }
 
         composable(LOGIN_ROUTE) {
-            ComposeViewNavHost()
+            LoginNavHost()
         }
 
         composable(NAVIGATION_ROUTE) {
             NavigationHome()
+        }
+
+        composable(VIEW_ROUTE) {
+            ComposeViewHome()
         }
     }
 }

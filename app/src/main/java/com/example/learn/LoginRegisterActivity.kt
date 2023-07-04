@@ -63,7 +63,7 @@ class LoginRegisterActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             LearnTheme {
-                ComposeViewNavHost()
+                LoginNavHost()
             }
         }
     }
@@ -78,7 +78,7 @@ object Destinations {
 const val stronglyDeemphasizedAlpha = 0.6f
 
 @Composable
-fun ComposeViewNavHost(
+fun LoginNavHost(
     navController: NavHostController = rememberNavController(),
 ) {
     NavHost(

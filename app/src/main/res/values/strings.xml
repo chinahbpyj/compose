@@ -26,4 +26,7 @@
     <string name="dismiss">Dismiss</string>
 
     <string name="back">back</string>
+
+    <string name="question_count">\u00A0of %d</string>
+    <string name="close">Close</string>
 </resources>
