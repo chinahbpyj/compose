@@ -1,6 +1,9 @@
 package com.example.learn.view
 
+import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,6 +15,8 @@ import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -181,6 +186,22 @@ fun TextEdit() {
         onValueChange = { edit = it },
         singleLine = true,
         // maxLines = Int.MAX_VALUE,
+        leadingIcon = {
+            IconButton(onClick = { }) {
+                Icon(
+                    imageVector = Icons.Filled.Search,
+                    contentDescription = null
+                )
+            }
+        },
+        trailingIcon = {
+            IconButton(onClick = { edit = "" }) {
+                Icon(
+                    imageVector = Icons.Filled.Clear,
+                    contentDescription = null
+                )
+            }
+        },
         placeholder = {
             Text(
                 text = stringResource(id = R.string.email),
