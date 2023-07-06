@@ -3,10 +3,13 @@ package com.example.learn.view
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -18,8 +21,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.learn.R
 
 @Composable
 fun TextView(@StringRes title: Int) {
@@ -37,6 +42,10 @@ fun TextView(@StringRes title: Int) {
         Spacer(modifier = Modifier.height(30.dp))
 
         TextViewThree(title)
+
+        Spacer(modifier = Modifier.height(30.dp))
+
+        TextViewFour(R.string.text_center)
     }
 }
 
@@ -97,3 +106,36 @@ fun TextViewThree(@StringRes title: Int, modifier: Modifier = Modifier) {
             .padding(horizontal = 15.dp)
     )
 }
+
+@Composable
+fun TextViewFour(@StringRes title: Int, modifier: Modifier = Modifier) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentWidth()
+    ) {
+        Text(
+            text = stringResource(id = title),
+            style = TextStyle(
+                //fontFamily = CustomFontFamily
+            ),
+            color = Color(0xFFFFFFFF),
+            textAlign = TextAlign.Center,
+            modifier = modifier
+                .widthIn(120.dp)
+                .background(
+                    color = Color(0xFF625b71),
+                    shape = RoundedCornerShape(18.dp)
+                )
+                .padding(vertical = 15.dp)
+        )
+    }
+}
+
+/*val CustomFontFamily = FontFamily(
+    listOf(
+        Font(R.font.montserrat_regular),
+        Font(R.font.montserrat_medium, FontWeight.Medium),
+        Font(R.font.montserrat_semi_bold, FontWeight.SemiBold)
+    )
+)*/

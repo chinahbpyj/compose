@@ -34,4 +34,6 @@
 
     <string name="text_description">You are a curious developer, always willing to try
         something new. You want to stay up to date with the trends to Compose is your middle name.</string>
+
+    <string name="text_center">word center</string>
 </resources>
