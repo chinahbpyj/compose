@@ -18,6 +18,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.learn.ui.theme.LearnTheme
 import com.example.learn.view.ViewDestinations.BUTTON_ROUTE
+import com.example.learn.view.ViewDestinations.CHECKBOX_ROUTE
 import com.example.learn.view.ViewDestinations.MAIN_ROUTE
 import com.example.learn.view.ViewDestinations.PROGRESS_ROUTE
 import com.example.learn.view.ViewDestinations.TEXTVIEW_ROUTE
@@ -29,6 +30,7 @@ object ViewDestinations {
     const val BUTTON_ROUTE = "Button"
     const val PROGRESS_ROUTE = "Progress"
     const val TEXTVIEW_ROUTE = "TextView"
+    const val CHECKBOX_ROUTE = "CheckBox"
 }
 
 data class View(
@@ -64,6 +66,10 @@ fun ComposeViewNavHost(
         View(
             TEXTVIEW_ROUTE,
         ) { navController.navigate(TEXTVIEW_ROUTE) },
+
+        View(
+            CHECKBOX_ROUTE,
+        ) { navController.navigate(CHECKBOX_ROUTE) },
     )
     NavHost(
         navController = navController,
@@ -87,6 +93,10 @@ fun ComposeViewNavHost(
 
         composable(TEXTVIEW_ROUTE) {
             TextView(R.string.text_description)
+        }
+
+        composable(CHECKBOX_ROUTE) {
+            CheckBoxView()
         }
     }
 }

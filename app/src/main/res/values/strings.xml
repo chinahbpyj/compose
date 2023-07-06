@@ -36,4 +36,13 @@
         something new. You want to stay up to date with the trends to Compose is your middle name.</string>
 
     <string name="text_center">word center</string>
+
+    <string name="read">Read</string>
+    <string name="work_out">Work out</string>
+    <string name="draw">Draw</string>
+    <string name="play_games">Play video games</string>
+    <string name="dance">Dance</string>
+    <string name="watch_movies">Watch movies</string>
+
+    <string name="show_list_checkbox">Show List Checkbox</string>
 </resources>
