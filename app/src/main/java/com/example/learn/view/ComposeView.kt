@@ -19,6 +19,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.learn.ui.theme.LearnTheme
 import com.example.learn.view.ViewDestinations.BUTTON_ROUTE
 import com.example.learn.view.ViewDestinations.CHECKBOX_ROUTE
+import com.example.learn.view.ViewDestinations.IMAGEVIEW_ROUTE
 import com.example.learn.view.ViewDestinations.MAIN_ROUTE
 import com.example.learn.view.ViewDestinations.PROGRESS_ROUTE
 import com.example.learn.view.ViewDestinations.RADIOBUTTON_ROUTE
@@ -33,6 +34,7 @@ object ViewDestinations {
     const val TEXTVIEW_ROUTE = "TextView"
     const val CHECKBOX_ROUTE = "CheckBox"
     const val RADIOBUTTON_ROUTE = "RadioButton"
+    const val IMAGEVIEW_ROUTE = "ImageView"
 }
 
 data class View(
@@ -76,6 +78,10 @@ fun ComposeViewNavHost(
         View(
             RADIOBUTTON_ROUTE,
         ) { navController.navigate(RADIOBUTTON_ROUTE) },
+
+        View(
+            IMAGEVIEW_ROUTE,
+        ) { navController.navigate(IMAGEVIEW_ROUTE) },
     )
     NavHost(
         navController = navController,
@@ -107,6 +113,10 @@ fun ComposeViewNavHost(
 
         composable(RADIOBUTTON_ROUTE) {
             RadioButtonView()
+        }
+
+        composable(IMAGEVIEW_ROUTE) {
+            ImageView()
         }
     }
 }
