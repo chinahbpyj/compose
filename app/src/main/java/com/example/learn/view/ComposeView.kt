@@ -21,6 +21,7 @@ import com.example.learn.view.ViewDestinations.BUTTON_ROUTE
 import com.example.learn.view.ViewDestinations.CHECKBOX_ROUTE
 import com.example.learn.view.ViewDestinations.MAIN_ROUTE
 import com.example.learn.view.ViewDestinations.PROGRESS_ROUTE
+import com.example.learn.view.ViewDestinations.RADIOBUTTON_ROUTE
 import com.example.learn.view.ViewDestinations.TEXTVIEW_ROUTE
 import com.example.learn.view.ViewDestinations.TOP_APPBAR_ROUTE
 
@@ -31,6 +32,7 @@ object ViewDestinations {
     const val PROGRESS_ROUTE = "Progress"
     const val TEXTVIEW_ROUTE = "TextView"
     const val CHECKBOX_ROUTE = "CheckBox"
+    const val RADIOBUTTON_ROUTE = "RadioButton"
 }
 
 data class View(
@@ -70,6 +72,10 @@ fun ComposeViewNavHost(
         View(
             CHECKBOX_ROUTE,
         ) { navController.navigate(CHECKBOX_ROUTE) },
+
+        View(
+            RADIOBUTTON_ROUTE,
+        ) { navController.navigate(RADIOBUTTON_ROUTE) },
     )
     NavHost(
         navController = navController,
@@ -97,6 +103,10 @@ fun ComposeViewNavHost(
 
         composable(CHECKBOX_ROUTE) {
             CheckBoxView()
+        }
+
+        composable(RADIOBUTTON_ROUTE) {
+            RadioButtonView()
         }
     }
 }

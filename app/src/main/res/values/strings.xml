@@ -45,4 +45,9 @@
     <string name="watch_movies">Watch movies</string>
 
     <string name="show_list_checkbox">Show List Checkbox</string>
+
+    <string name="spark">Spark</string>
+    <string name="lenz">Lenz</string>
+    <string name="bug_chaos">Bug of Chaos</string>
+    <string name="frag">Frag</string>
 </resources>
