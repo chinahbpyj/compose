@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.learn.R
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -19,6 +20,7 @@ import com.example.learn.ui.theme.LearnTheme
 import com.example.learn.view.ViewDestinations.BUTTON_ROUTE
 import com.example.learn.view.ViewDestinations.MAIN_ROUTE
 import com.example.learn.view.ViewDestinations.PROGRESS_ROUTE
+import com.example.learn.view.ViewDestinations.TEXTVIEW_ROUTE
 import com.example.learn.view.ViewDestinations.TOP_APPBAR_ROUTE
 
 object ViewDestinations {
@@ -26,6 +28,7 @@ object ViewDestinations {
     const val TOP_APPBAR_ROUTE = "TopAppBar"
     const val BUTTON_ROUTE = "Button"
     const val PROGRESS_ROUTE = "Progress"
+    const val TEXTVIEW_ROUTE = "TextView"
 }
 
 data class View(
@@ -47,16 +50,20 @@ fun ComposeViewNavHost(
 
     val buttonListSample = listOf(
         View(
-            "TopAppBar",
+            TOP_APPBAR_ROUTE,
         ) { navController.navigate(TOP_APPBAR_ROUTE) },
 
         View(
-            "Button",
+            BUTTON_ROUTE,
         ) { navController.navigate(BUTTON_ROUTE) },
 
         View(
-            "Progress",
+            PROGRESS_ROUTE,
         ) { navController.navigate(PROGRESS_ROUTE) },
+
+        View(
+            TEXTVIEW_ROUTE,
+        ) { navController.navigate(TEXTVIEW_ROUTE) },
     )
     NavHost(
         navController = navController,
@@ -76,6 +83,10 @@ fun ComposeViewNavHost(
 
         composable(PROGRESS_ROUTE) {
             ProgressView(0, 100, 0f, 0f..100f)
+        }
+
+        composable(TEXTVIEW_ROUTE) {
+            TextView(R.string.text_description)
         }
     }
 }
