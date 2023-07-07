@@ -18,10 +18,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.learn.ButtonDestinations.ANIMATION_ROUTE
 import com.example.learn.ButtonDestinations.LOGIN_ROUTE
 import com.example.learn.ButtonDestinations.MAIN_ROUTE
 import com.example.learn.ButtonDestinations.NAVIGATION_ROUTE
 import com.example.learn.ButtonDestinations.VIEW_ROUTE
+import com.example.learn.animation.JumpAnimation
 import com.example.learn.ui.theme.LearnTheme
 import com.example.learn.view.ComposeViewHome
 
@@ -41,6 +43,7 @@ object ButtonDestinations {
     const val LOGIN_ROUTE = "login"
     const val NAVIGATION_ROUTE = "navigation"
     const val VIEW_ROUTE = "view"
+    const val ANIMATION_ROUTE = "animation"
 }
 
 data class Button(
@@ -63,7 +66,11 @@ fun MainNavHost(
 
         Button(
             "ComposeViewActivity",
-        ) { navController.navigate(VIEW_ROUTE) }
+        ) { navController.navigate(VIEW_ROUTE) },
+
+        Button(
+            "ScreenJumpAnimation",
+        ) { navController.navigate(ANIMATION_ROUTE) },
     )
 
     NavHost(
@@ -84,6 +91,10 @@ fun MainNavHost(
 
         composable(VIEW_ROUTE) {
             ComposeViewHome()
+        }
+
+        composable(ANIMATION_ROUTE) {
+            JumpAnimation(onNavUp = navController::navigateUp)
         }
     }
 }
