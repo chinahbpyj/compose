@@ -50,4 +50,7 @@
     <string name="lenz">Lenz</string>
     <string name="bug_chaos">Bug of Chaos</string>
     <string name="frag">Frag</string>
+
+    <string name="horizontal_grid">HORIZONTAL GRID</string>
+    <string name="vertical_grid">VERTICAL GRID</string>
 </resources>
