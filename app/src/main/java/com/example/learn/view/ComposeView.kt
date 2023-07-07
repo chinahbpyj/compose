@@ -21,6 +21,7 @@ import com.example.learn.view.ViewDestinations.BUTTON_ROUTE
 import com.example.learn.view.ViewDestinations.CHECKBOX_ROUTE
 import com.example.learn.view.ViewDestinations.EDIT_ROUTE
 import com.example.learn.view.ViewDestinations.IMAGEVIEW_ROUTE
+import com.example.learn.view.ViewDestinations.LIST_ROUTE
 import com.example.learn.view.ViewDestinations.MAIN_ROUTE
 import com.example.learn.view.ViewDestinations.PROGRESS_ROUTE
 import com.example.learn.view.ViewDestinations.RADIOBUTTON_ROUTE
@@ -37,6 +38,7 @@ object ViewDestinations {
     const val RADIOBUTTON_ROUTE = "RadioButton"
     const val IMAGEVIEW_ROUTE = "ImageView"
     const val EDIT_ROUTE = "EditView"
+    const val LIST_ROUTE = "List"
 }
 
 data class View(
@@ -88,6 +90,10 @@ fun ComposeViewNavHost(
         View(
             EDIT_ROUTE,
         ) { navController.navigate(EDIT_ROUTE) },
+
+        View(
+            LIST_ROUTE,
+        ) { navController.navigate(LIST_ROUTE) },
     )
     NavHost(
         navController = navController,
@@ -127,6 +133,10 @@ fun ComposeViewNavHost(
 
         composable(EDIT_ROUTE) {
             EditView()
+        }
+
+        composable(LIST_ROUTE) {
+            ListView()
         }
     }
 }
