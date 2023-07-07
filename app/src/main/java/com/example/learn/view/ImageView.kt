@@ -1,7 +1,6 @@
 package com.example.learn.view
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,12 +19,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.example.learn.R
 
 @Composable
@@ -128,23 +131,30 @@ fun ImageViewItem(
     bottomStart: Dp = 0.dp
 ) {
     Surface(
-        color = Color(0xFF625b71),
-        shape = RoundedCornerShape(
-            topStart = topStart,
-            topEnd = topEnd,
-            bottomEnd = bottomEnd,
-            bottomStart = bottomStart
-        )
+        modifier = Modifier.shadow(
+            elevation = 5.dp,
+            shape = RoundedCornerShape(
+                topStart = topStart,
+                topEnd = topEnd,
+                bottomEnd = bottomEnd,
+                bottomStart = bottomStart
+            )
+        ),
+        color = Color(0xFF625b71)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Image(
-                painter = painterResource(R.drawable.ic_launcher_background),
+            AsyncImage(
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data("https://source.unsplash.com/Yc5sL-ejk6U")
+                    .crossfade(true)
+                    .build(),
                 contentDescription = null,
+                placeholder = painterResource(R.drawable.ic_launcher_background),
+                modifier = Modifier.size(width = 100.dp, height = 120.dp),
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.size(width = 100.dp, height = 120.dp)
             )
 
             Spacer(modifier = Modifier.width(15.dp))
