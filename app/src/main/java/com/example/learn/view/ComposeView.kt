@@ -19,6 +19,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.learn.ui.theme.LearnTheme
 import com.example.learn.view.ViewDestinations.BUTTON_ROUTE
 import com.example.learn.view.ViewDestinations.CHECKBOX_ROUTE
+import com.example.learn.view.ViewDestinations.DIALOG_ROUTE
 import com.example.learn.view.ViewDestinations.EDIT_ROUTE
 import com.example.learn.view.ViewDestinations.FLOW_ROUTE
 import com.example.learn.view.ViewDestinations.GRID_ROUTE
@@ -43,6 +44,7 @@ object ViewDestinations {
     const val LIST_ROUTE = "List"
     const val GRID_ROUTE = "GridList"
     const val FLOW_ROUTE = "FlowLayout"
+    const val DIALOG_ROUTE = "Dialog"
 }
 
 data class View(
@@ -106,6 +108,10 @@ fun ComposeViewNavHost(
         View(
             FLOW_ROUTE,
         ) { navController.navigate(FLOW_ROUTE) },
+
+        View(
+            DIALOG_ROUTE,
+        ) { navController.navigate(DIALOG_ROUTE) },
     )
     NavHost(
         navController = navController,
@@ -157,6 +163,10 @@ fun ComposeViewNavHost(
 
         composable(FLOW_ROUTE) {
             FlowLayout()
+        }
+
+        composable(DIALOG_ROUTE) {
+            Dialog()
         }
     }
 }

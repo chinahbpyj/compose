@@ -56,4 +56,8 @@
 
     <string name="flow_row">FLOW ROW</string>
     <string name="flow_column">FLOW COLUMN</string>
+
+    <string name="dialog_title">Dialog Title</string>
+    <string name="dialog_button_ok">OK</string>
+    <string name="dialog_button_cancel">Cancel</string>
 </resources>
