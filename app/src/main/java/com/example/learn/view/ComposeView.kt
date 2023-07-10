@@ -20,6 +20,7 @@ import com.example.learn.ui.theme.LearnTheme
 import com.example.learn.view.ViewDestinations.BUTTON_ROUTE
 import com.example.learn.view.ViewDestinations.CHECKBOX_ROUTE
 import com.example.learn.view.ViewDestinations.EDIT_ROUTE
+import com.example.learn.view.ViewDestinations.FLOW_ROUTE
 import com.example.learn.view.ViewDestinations.GRID_ROUTE
 import com.example.learn.view.ViewDestinations.IMAGEVIEW_ROUTE
 import com.example.learn.view.ViewDestinations.LIST_ROUTE
@@ -41,6 +42,7 @@ object ViewDestinations {
     const val EDIT_ROUTE = "EditView"
     const val LIST_ROUTE = "List"
     const val GRID_ROUTE = "GridList"
+    const val FLOW_ROUTE = "FlowLayout"
 }
 
 data class View(
@@ -100,6 +102,10 @@ fun ComposeViewNavHost(
         View(
             GRID_ROUTE,
         ) { navController.navigate(GRID_ROUTE) },
+
+        View(
+            FLOW_ROUTE,
+        ) { navController.navigate(FLOW_ROUTE) },
     )
     NavHost(
         navController = navController,
@@ -147,6 +153,10 @@ fun ComposeViewNavHost(
 
         composable(GRID_ROUTE) {
             GridView()
+        }
+
+        composable(FLOW_ROUTE) {
+            FlowLayout()
         }
     }
 }

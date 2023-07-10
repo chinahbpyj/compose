@@ -53,4 +53,7 @@
 
     <string name="horizontal_grid">HORIZONTAL GRID</string>
     <string name="vertical_grid">VERTICAL GRID</string>
+
+    <string name="flow_row">FLOW ROW</string>
+    <string name="flow_column">FLOW COLUMN</string>
 </resources>
