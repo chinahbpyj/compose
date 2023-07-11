@@ -30,6 +30,7 @@ import com.example.learn.view.ViewDestinations.LOAD_ROUTE
 import com.example.learn.view.ViewDestinations.MAIN_ROUTE
 import com.example.learn.view.ViewDestinations.PROGRESS_ROUTE
 import com.example.learn.view.ViewDestinations.RADIOBUTTON_ROUTE
+import com.example.learn.view.ViewDestinations.TAB_ROUTE
 import com.example.learn.view.ViewDestinations.TEXTVIEW_ROUTE
 import com.example.learn.view.ViewDestinations.TOP_APPBAR_ROUTE
 
@@ -48,6 +49,7 @@ object ViewDestinations {
     const val FLOW_ROUTE = "FlowLayout"
     const val DIALOG_ROUTE = "Dialog"
     const val LOAD_ROUTE = "Loading"
+    const val TAB_ROUTE = "Tab"
 }
 
 data class View(
@@ -119,6 +121,10 @@ fun ComposeViewNavHost(
         View(
             LOAD_ROUTE,
         ) { navController.navigate(LOAD_ROUTE) },
+
+        View(
+            TAB_ROUTE,
+        ) { navController.navigate(TAB_ROUTE) },
     )
     NavHost(
         navController = navController,
@@ -178,6 +184,10 @@ fun ComposeViewNavHost(
 
         composable(LOAD_ROUTE) {
             Loading(navController::navigateUp)
+        }
+
+        composable(TAB_ROUTE) {
+            TabView()
         }
     }
 }

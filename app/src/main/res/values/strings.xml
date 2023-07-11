@@ -60,4 +60,8 @@
     <string name="dialog_title">Dialog Title</string>
     <string name="dialog_button_ok">OK</string>
     <string name="dialog_button_cancel">Cancel</string>
+
+    <string name="tab_a">A</string>
+    <string name="tab_b">B</string>
+    <string name="tab_c">C</string>
 </resources>
