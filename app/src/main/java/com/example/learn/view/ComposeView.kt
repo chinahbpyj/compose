@@ -16,6 +16,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.learn.dialog.Dialog
 import com.example.learn.ui.theme.LearnTheme
 import com.example.learn.view.ViewDestinations.BUTTON_ROUTE
 import com.example.learn.view.ViewDestinations.CHECKBOX_ROUTE
