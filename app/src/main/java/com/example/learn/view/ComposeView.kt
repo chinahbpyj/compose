@@ -25,6 +25,7 @@ import com.example.learn.view.ViewDestinations.FLOW_ROUTE
 import com.example.learn.view.ViewDestinations.GRID_ROUTE
 import com.example.learn.view.ViewDestinations.IMAGEVIEW_ROUTE
 import com.example.learn.view.ViewDestinations.LIST_ROUTE
+import com.example.learn.view.ViewDestinations.LOAD_ROUTE
 import com.example.learn.view.ViewDestinations.MAIN_ROUTE
 import com.example.learn.view.ViewDestinations.PROGRESS_ROUTE
 import com.example.learn.view.ViewDestinations.RADIOBUTTON_ROUTE
@@ -45,6 +46,7 @@ object ViewDestinations {
     const val GRID_ROUTE = "GridList"
     const val FLOW_ROUTE = "FlowLayout"
     const val DIALOG_ROUTE = "Dialog"
+    const val LOAD_ROUTE = "Loading"
 }
 
 data class View(
@@ -112,6 +114,10 @@ fun ComposeViewNavHost(
         View(
             DIALOG_ROUTE,
         ) { navController.navigate(DIALOG_ROUTE) },
+
+        View(
+            LOAD_ROUTE,
+        ) { navController.navigate(LOAD_ROUTE) },
     )
     NavHost(
         navController = navController,
@@ -167,6 +173,10 @@ fun ComposeViewNavHost(
 
         composable(DIALOG_ROUTE) {
             Dialog()
+        }
+
+        composable(LOAD_ROUTE) {
+            Loading(navController::navigateUp)
         }
     }
 }
