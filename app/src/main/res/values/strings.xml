@@ -64,4 +64,8 @@
     <string name="tab_a">A</string>
     <string name="tab_b">B</string>
     <string name="tab_c">C</string>
+
+    <string name="published_in">Published in: %1$s</string>
+
+    <string name="share">Share</string>
 </resources>
