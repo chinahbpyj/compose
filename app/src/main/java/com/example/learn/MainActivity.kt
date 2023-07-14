@@ -23,9 +23,11 @@ import com.example.learn.ButtonDestinations.DETAIL_ROUTE
 import com.example.learn.ButtonDestinations.LOGIN_ROUTE
 import com.example.learn.ButtonDestinations.MAIN_ROUTE
 import com.example.learn.ButtonDestinations.NAVIGATION_ROUTE
+import com.example.learn.ButtonDestinations.REFRESH_MORE_ROUTE
 import com.example.learn.ButtonDestinations.VIEW_ROUTE
 import com.example.learn.animation.JumpAnimation
 import com.example.learn.detail.ScrollDetail
+import com.example.learn.refresh.RefreshLoadMore
 import com.example.learn.ui.theme.LearnTheme
 import com.example.learn.view.ComposeViewHome
 
@@ -47,6 +49,7 @@ object ButtonDestinations {
     const val VIEW_ROUTE = "view"
     const val ANIMATION_ROUTE = "animation"
     const val DETAIL_ROUTE = "scrollDetail"
+    const val REFRESH_MORE_ROUTE = "refreshLoadMore"
 }
 
 data class Button(
@@ -78,6 +81,10 @@ fun MainNavHost(
         Button(
             "ScrollDetailActivity",
         ) { navController.navigate(DETAIL_ROUTE) },
+
+        Button(
+            "RefreshAndLoadMore",
+        ) { navController.navigate(REFRESH_MORE_ROUTE) },
     )
 
     NavHost(
@@ -106,6 +113,10 @@ fun MainNavHost(
 
         composable(DETAIL_ROUTE) {
             ScrollDetail(navController::navigateUp)
+        }
+
+        composable(REFRESH_MORE_ROUTE) {
+            RefreshLoadMore()
         }
     }
 }
