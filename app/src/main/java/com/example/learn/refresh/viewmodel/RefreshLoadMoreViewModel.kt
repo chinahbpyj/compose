@@ -1,8 +1,9 @@
-package com.example.learn.refresh
+package com.example.learn.refresh.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.example.learn.refresh.RefreshLoadMoreState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -87,31 +88,6 @@ class RefreshLoadMoreViewModel : ViewModel() {
         return listData
     }
 }
-
-private data class RefreshLoadMoreState(
-    val request: Boolean = true,
-    val index: Int = 1,
-    val loading: Boolean = false,
-    val refreshing: Boolean = false,
-    val data: List<String>? = null
-) {
-    fun toUiState(): UiState = UiState(
-        request = request,
-        index = index,
-        loading = loading,
-        refreshing = refreshing,
-        data = data
-    )
-}
-
-data class UiState(
-    val request: Boolean = true,
-    val index: Int = 1,
-    val loading: Boolean = false,
-    val refreshing: Boolean = false,
-    val data: List<String>? = null
-)
-
 
 class RefreshLoadMoreViewModelFactory : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
