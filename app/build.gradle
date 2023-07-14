@@ -68,6 +68,8 @@ dependencies {
     //AsyncImage
     implementation "io.coil-kt:coil-compose:2.2.2"
 
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.6.1"
+
     androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
     debugImplementation 'androidx.compose.ui:ui-tooling'

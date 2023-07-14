@@ -20,47 +20,36 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun RefreshLoadMore() {
     val context = LocalContext.current
 
-    var index by remember { mutableStateOf(1) }
-    var data: List<String>? by remember { mutableStateOf(null) }
-    var loading by remember { mutableStateOf(false) }
-    var refreshing by remember { mutableStateOf(false) }
+    val viewModel: RefreshLoadMoreViewModel = viewModel(
+        factory = RefreshLoadMoreViewModelFactory()
+    )
 
-    val refreshingUIHeight = 80.dp
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    val refresh = {
-        refreshing = false
-        index = 1
-        data = getData(index, 15)
+    if (uiState.request) {
+        LoadingUII()
+        viewModel.request()
+    } else {
+        SwipeRefresh(
+            refreshingUI = { RefreshingUI() },
+            loadMoreUI = { LoadMoreUI() },
+            emptyLayout = { EmptyLayout { viewModel.refresh() } },
+            items = uiState.data,
+            refreshing = uiState.refreshing,
+            onRefresh = { viewModel.refresh() },
+            loading = uiState.loading,
+            onLoad = { viewModel.loadMore() },
+            itemContent = { _, item ->
+                Item(item, context)
+            })
     }
-
-    val loadMore = {
-        loading = false
-        index++
-        val list = mutableListOf<String>()
-        list.addAll(data!!)
-        val newData: List<String> = getData(index, 15)
-        list.addAll(newData)
-        data = list
-    }
-
-    SwipeRefresh(
-        refreshingUIHeight = refreshingUIHeight,
-        refreshingUI = { RefreshingUI(refreshingUIHeight) },
-        loadMoreUI = { LoadMoreUI() },
-        emptyLayout = { EmptyLayout { refresh() } },
-        items = data,
-        refreshing = refreshing,
-        onRefresh = { refresh() },
-        loading = loading,
-        onLoad = { loadMore() },
-        itemContent = { _, item ->
-            Item(item, context)
-        })
 }
 
 @Composable
@@ -83,14 +72,4 @@ private fun Item(item: String, context: Context) {
             textAlign = TextAlign.Center
         )
     }
-}
-
-private fun getData(index: Int, pageSize: Int): List<String> {
-    val listData = mutableListOf<String>()
-
-    for (i in ((index - 1) * pageSize + 1)..index * pageSize) {
-        listData.add(i.toString())
-    }
-
-    return listData
 }

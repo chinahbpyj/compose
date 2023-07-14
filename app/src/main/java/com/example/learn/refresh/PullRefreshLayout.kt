@@ -47,7 +47,6 @@ import kotlin.math.pow
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun <T> SwipeRefresh(
-    refreshingUIHeight: Dp,
     refreshingUI: @Composable () -> Unit,
     loadMoreUI: @Composable () -> Unit,
     emptyLayout: @Composable () -> Unit,
@@ -64,12 +63,8 @@ fun <T> SwipeRefresh(
     contentType: (index: Int, item: T) -> Any? = { _, _ -> null },
     itemContent: @Composable LazyItemScope.(index: Int, item: T) -> Unit
 ) {
-    val refreshingHeightPx: Float
-    with(LocalDensity.current) {
-        refreshingHeightPx = refreshingUIHeight.toPx()
-    }
-
     val state = rememberSwipeRefreshState(refreshing, onRefresh)
+
     if (items.isNullOrEmpty()) {
         if (!refreshing) {
             emptyLayout()
@@ -86,18 +81,21 @@ fun <T> SwipeRefresh(
             ) {
                 itemsIndexed(items, key = key, contentType = contentType) { index, item ->
                     itemContent(index, item)
-                    if (loading || items.size - index < 2) {
+                    if (!refreshing && items.size - index < 2) {
                         LaunchedEffect(items.size) {
                             onLoad()
                         }
                     }
                 }
-                item {
-                    loadMoreUI()
+
+                if (!refreshing && loading) {
+                    item {
+                        loadMoreUI()
+                    }
                 }
             }
 
-            if (refreshing || (state.position >= refreshingHeightPx * 0.5f)) {
+            if (refreshing && !loading) {
                 refreshingUI()
             }
         }
