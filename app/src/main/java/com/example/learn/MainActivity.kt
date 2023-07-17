@@ -112,7 +112,7 @@ fun MainNavHost(
         }
 
         composable(DETAIL_ROUTE) {
-            ScrollDetail(navController::navigateUp)
+            ScrollDetail()
         }
 
         composable(REFRESH_MORE_ROUTE) {

@@ -1,146 +1,59 @@
 package com.example.learn.detail
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.TopAppBarScrollBehavior
-import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
-import com.example.learn.R
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.learn.detail.ScrollDetailDestinations.APPBAR_SCROLL_ROUTE
+import com.example.learn.detail.ScrollDetailDestinations.AREA_SCROLL_ROUTE
+import com.example.learn.detail.ScrollDetailDestinations.MAIN_ROUTE
+import com.example.learn.ui.theme.LearnTheme
 import com.example.learn.view.ListView
+import com.example.learn.view.View
 
-@Composable
-fun ScrollDetail(onBack: () -> Unit) {
-    TopAppBarScroll(onBack = onBack)
+object ScrollDetailDestinations {
+    const val MAIN_ROUTE = "Main"
+    const val APPBAR_SCROLL_ROUTE = "TopAppBarScroll"
+    const val AREA_SCROLL_ROUTE = "TopAreaScroll"
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun TopAppBarScroll(onBack: () -> Unit) {
-    Row(modifier = Modifier.fillMaxSize()) {
-        val context = LocalContext.current
-
-        DetailScreenContent(
-            navigationIconContent = {
-                IconButton(onClick = onBack) {
-                    Icon(
-                        imageVector = Icons.Filled.ArrowBack,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.primary
-                    )
-                }
-            },
-
-            bottomBarContent = {
-                BottomAppBar(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(60.dp),
-
-                    actions = {
-                        FavoriteButton(
-                            modifier = Modifier.weight(1f),
-                            onClick = { })
-
-                        BookmarkButton(
-                            modifier = Modifier.weight(1f),
-                            isBookmarked = false,
-                            onClick = { })
-
-                        ShareButton(
-                            modifier = Modifier.weight(1f),
-                            onClick = { sharePost(context) })
-                    }
-                )
-            }
-        )
+fun ScrollDetail() {
+    LearnTheme {
+        ScrollDetailNavHost()
     }
 }
 
-@ExperimentalMaterial3Api
 @Composable
-private fun DetailScreenContent(
-    navigationIconContent: @Composable () -> Unit = { },
-    bottomBarContent: @Composable () -> Unit = { }
+private fun ScrollDetailNavHost(
+    navController: NavHostController = rememberNavController(),
 ) {
-    val topAppBarState = rememberTopAppBarState()
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(topAppBarState)
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = "Title",
-                navigationIconContent = navigationIconContent,
-                scrollBehavior = scrollBehavior
-            )
-        },
-        bottomBar = bottomBarContent
-    ) { innerPadding ->
-        DetailContent(
-            modifier = Modifier
-                .nestedScroll(scrollBehavior.nestedScrollConnection)
-                .padding(innerPadding)
-        )
-    }
-}
+    val buttonListSample = listOf(
+        View(
+            APPBAR_SCROLL_ROUTE,
+        ) { navController.navigate(APPBAR_SCROLL_ROUTE) },
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun TopAppBar(
-    title: String,
-    navigationIconContent: @Composable () -> Unit,
-    scrollBehavior: TopAppBarScrollBehavior?,
-    modifier: Modifier = Modifier
-) {
-    CenterAlignedTopAppBar(
-        title = {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_launcher_background),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .clip(CircleShape)
-                        .size(36.dp)
-                )
-                Text(
-                    text = stringResource(R.string.published_in, title),
-                    style = MaterialTheme.typography.labelLarge,
-                    modifier = Modifier.padding(start = 8.dp)
-                )
-            }
-        },
-        navigationIcon = navigationIconContent,
-        scrollBehavior = scrollBehavior,
-        modifier = modifier
+        View(
+            AREA_SCROLL_ROUTE,
+        ) { navController.navigate(AREA_SCROLL_ROUTE) },
     )
+
+    NavHost(
+        navController = navController,
+        startDestination = MAIN_ROUTE,
+    ) {
+        composable(MAIN_ROUTE) {
+            ListView(buttonListSample)
+        }
+
+        composable(APPBAR_SCROLL_ROUTE) {
+            TopAppBarScroll(navController::navigateUp)
+        }
+
+        composable(AREA_SCROLL_ROUTE) {
+            TopAreaScroll(navController::navigateUp)
+        }
+    }
 }
 
-@Composable
-private fun DetailContent(
-    modifier: Modifier = Modifier
-) {
-    ListView(modifier)
-}
