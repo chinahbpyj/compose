@@ -49,3 +49,27 @@ data class RefreshUiState(
     val refreshing: Boolean = false,
     val data: RefreshData? = null
 )
+
+data class LoadMoreState(
+    val request: Boolean = true,
+    val loading: Boolean = false,
+    val refreshing: Boolean = false,
+    val data: RefreshData? = null,
+    val list: List<String>? = null
+) {
+    fun toUiState(): LoadMoreUiState = LoadMoreUiState(
+        request = request,
+        loading = loading,
+        refreshing = refreshing,
+        data = data,
+        list = list
+    )
+}
+
+data class LoadMoreUiState(
+    val request: Boolean = true,
+    val loading: Boolean = false,
+    val refreshing: Boolean = false,
+    val data: RefreshData? = null,
+    val list: List<String>? = null
+)

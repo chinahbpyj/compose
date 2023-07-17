@@ -50,6 +50,7 @@ fun <T> SwipeRefresh(
     refreshingUI: @Composable () -> Unit,
     loadMoreUI: @Composable () -> Unit,
     emptyLayout: @Composable () -> Unit,
+    contentUI: @Composable () -> Unit = {},
     items: List<T>?,
     refreshing: Boolean,
     onRefresh: () -> Unit,
@@ -79,6 +80,10 @@ fun <T> SwipeRefresh(
                 contentPadding = contentPadding,
                 verticalArrangement = verticalArrangement,
             ) {
+                item {
+                    contentUI()
+                }
+
                 itemsIndexed(items, key = key, contentType = contentType) { index, item ->
                     itemContent(index, item)
                     if (!refreshing && items.size - index < 2) {
