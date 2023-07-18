@@ -5,7 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
@@ -14,6 +16,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.WindowCompat
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -33,10 +37,32 @@ import com.example.learn.view.ComposeViewHome
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
+
         super.onCreate(savedInstanceState)
+
+        // Keep the splash screen on-screen until the UI state is loaded. This condition is
+        // evaluated each time the app needs to be redrawn so it should be fast to avoid blocking
+        // the UI.
+        splashScreen.setKeepOnScreenCondition {
+            /*when (uiState) {
+                Loading -> true
+                is Success -> false
+            }*/
+            false
+        }
+
+        // Turn off the decor fitting system windows, which allows us to handle insets,
+        // including IME animations
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         setContent {
             LearnTheme {
-                MainNavHost()
+                MainNavHost(
+                    modifier = Modifier
+                        .statusBarsPadding()
+                        .navigationBarsPadding()
+                )
             }
         }
     }
@@ -59,6 +85,7 @@ data class Button(
 
 @Composable
 fun MainNavHost(
+    modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
 ) {
     val buttonListSample = listOf(
@@ -88,6 +115,7 @@ fun MainNavHost(
     )
 
     NavHost(
+        modifier = modifier,
         navController = navController,
         startDestination = MAIN_ROUTE,
     ) {
