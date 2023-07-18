@@ -30,6 +30,7 @@ import com.example.learn.view.ViewDestinations.LOAD_ROUTE
 import com.example.learn.view.ViewDestinations.MAIN_ROUTE
 import com.example.learn.view.ViewDestinations.PROGRESS_ROUTE
 import com.example.learn.view.ViewDestinations.RADIOBUTTON_ROUTE
+import com.example.learn.view.ViewDestinations.SWITCH_ROUTE
 import com.example.learn.view.ViewDestinations.TAB_ROUTE
 import com.example.learn.view.ViewDestinations.TEXTVIEW_ROUTE
 import com.example.learn.view.ViewDestinations.TOP_APPBAR_ROUTE
@@ -40,6 +41,7 @@ object ViewDestinations {
     const val BUTTON_ROUTE = "Button"
     const val PROGRESS_ROUTE = "Progress"
     const val TEXTVIEW_ROUTE = "TextView"
+    const val SWITCH_ROUTE = "Switch"
     const val CHECKBOX_ROUTE = "CheckBox"
     const val RADIOBUTTON_ROUTE = "RadioButton"
     const val IMAGEVIEW_ROUTE = "ImageView"
@@ -85,6 +87,10 @@ fun ComposeViewNavHost(
         View(
             TEXTVIEW_ROUTE,
         ) { navController.navigate(TEXTVIEW_ROUTE) },
+
+        View(
+            SWITCH_ROUTE,
+        ) { navController.navigate(SWITCH_ROUTE) },
 
         View(
             CHECKBOX_ROUTE,
@@ -148,6 +154,10 @@ fun ComposeViewNavHost(
 
         composable(TEXTVIEW_ROUTE) {
             TextView(R.string.text_description)
+        }
+
+        composable(SWITCH_ROUTE) {
+            SwitchView()
         }
 
         composable(CHECKBOX_ROUTE) {
